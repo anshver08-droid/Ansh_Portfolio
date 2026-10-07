@@ -1,8 +1,7 @@
 import React from "react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GraduationCap, BookOpen, Calendar, MapPin, Award } from "lucide-react";
-import { Badge } from "@/components/ui/Badge";
+import { GraduationCap, BookOpen, Calendar, MapPin } from "lucide-react";
 
 export function EducationSection() {
   const coreCurriculum = [
@@ -17,7 +16,7 @@ export function EducationSection() {
   ];
 
   return (
-    <section id="education" className="py-20 lg:py-28 border-t border-border-subtle bg-slate-950/40 relative">
+    <section id="education" className="py-20 lg:py-28 border-t border-white/10 bg-black/40 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           number="07"
@@ -28,60 +27,60 @@ export function EducationSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Academic Card */}
-          <div className="lg:col-span-8 p-6 sm:p-8 rounded-2xl border border-border-subtle bg-slate-900/50 space-y-6">
+          <div className="lg:col-span-8 p-7 sm:p-9 rounded-3xl border border-white/10 bg-surface-100/40 space-y-7 shadow-card">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-cyan-950/50 border border-cyan-800/40 text-cyan-400">
+                <div className="p-2.5 rounded-xl bg-black/60 border border-white/10 text-accent">
                   <GraduationCap className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-100">
+                  <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-tight">
                     {PERSONAL_INFO.college}
                   </h3>
-                  <div className="flex items-center gap-2 text-xs text-slate-400 font-mono mt-0.5">
-                    <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                  <div className="flex items-center gap-2 text-xs text-zinc-400 font-mono mt-0.5">
+                    <MapPin className="w-3.5 h-3.5 text-accent" />
                     <span>Ghaziabad, Uttar Pradesh, India</span>
                   </div>
                 </div>
               </div>
 
-              <Badge variant="cyan" size="sm">
+              <span className="font-mono text-xs px-2.5 py-1 rounded border border-white/10 bg-black/60 text-zinc-300">
                 Undergraduate Degree
-              </Badge>
+              </span>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-950/80 border border-border-subtle space-y-2">
-              <div className="text-sm sm:text-base font-semibold text-slate-100">
+            <div className="p-5 rounded-2xl bg-black/60 border border-white/5 space-y-2 font-mono">
+              <div className="text-sm sm:text-base font-bold text-white uppercase tracking-tight font-sans">
                 {PERSONAL_INFO.degree}
               </div>
-              <div className="text-xs font-mono text-cyan-400">
+              <div className="text-xs text-accent">
                 Specialization: {PERSONAL_INFO.specialization}
               </div>
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 pt-1">
-                <span className="flex items-center gap-1.5 text-slate-300">
-                  <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+              <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-400 pt-1">
+                <span className="flex items-center gap-1.5 text-zinc-300">
+                  <Calendar className="w-3.5 h-3.5 text-accent" />
                   <span>Timeline: {PERSONAL_INFO.duration}</span>
                 </span>
                 <span>•</span>
-                <span className="text-slate-300">
-                  Cumulative Standing: <strong className="text-cyan-300 font-bold">CGPA: {PERSONAL_INFO.cgpa}</strong>
+                <span className="text-zinc-300">
+                  Standing: <strong className="text-accent font-bold">CGPA: {PERSONAL_INFO.cgpa}</strong>
                 </span>
               </div>
             </div>
 
             {/* Curriculum Grid */}
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-400 uppercase tracking-wider mb-3">
-                <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+              <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 uppercase tracking-widest mb-4">
+                <BookOpen className="w-3.5 h-3.5 text-accent" />
                 <span>Foundational Engineering Coursework</span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {coreCurriculum.map((course, idx) => (
                   <div
                     key={idx}
-                    className="p-2.5 rounded-lg bg-slate-950/50 border border-slate-800/80 text-xs text-slate-300 flex items-center gap-2"
+                    className="p-3 rounded-xl bg-black/40 border border-white/5 text-xs text-zinc-300 flex items-center gap-2.5 font-mono"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/80 flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                     <span>{course}</span>
                   </div>
                 ))}
@@ -90,36 +89,36 @@ export function EducationSection() {
           </div>
 
           {/* Academic Highlights & Standing */}
-          <div className="lg:col-span-4 p-6 sm:p-8 rounded-2xl border border-border-subtle bg-slate-950/60 space-y-5">
-            <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
-              <h3 className="text-sm font-bold text-slate-100 font-mono uppercase tracking-wider">
-                Academic Metric
+          <div className="lg:col-span-4 p-7 sm:p-9 rounded-3xl border border-white/10 bg-surface-100/60 space-y-6 shadow-card">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <h3 className="text-xs font-bold text-white font-mono uppercase tracking-widest">
+                VERIFIED METRICS
               </h3>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800/60">
-                Verified
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-950/40 text-accent font-semibold">
+                OFFICIAL
               </span>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-              <span className="text-xs font-mono text-slate-400 block">
-                Current CGPA
+            <div className="p-5 rounded-2xl bg-black/60 border border-white/5 space-y-2">
+              <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider block">
+                Current Cumulative Standing
               </span>
-              <div className="text-3xl font-extrabold text-cyan-400 font-mono">
-                {PERSONAL_INFO.cgpa} <span className="text-sm text-slate-400 font-normal">/ 10</span>
+              <div className="text-4xl font-black text-accent font-mono tracking-tighter">
+                {PERSONAL_INFO.cgpa} <span className="text-sm text-zinc-500 font-normal">/ 10</span>
               </div>
-              <p className="text-[11px] text-slate-400 leading-relaxed">
+              <p className="text-[11px] text-zinc-400 font-mono leading-relaxed">
                 Consistent academic performance in Computer Science & Engineering curriculum.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-              <span className="text-xs font-mono text-slate-400 block">
-                Internship Qualification
+            <div className="p-5 rounded-2xl bg-black/60 border border-white/5 space-y-2">
+              <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider block">
+                National Aptitude Ranking
               </span>
-              <div className="text-xl font-bold text-emerald-400 font-mono">
-                AIR #835 (Score: 63)
+              <div className="text-2xl font-black text-white font-mono tracking-tight">
+                AIR #835 <span className="text-accent text-sm font-semibold">(Score 63)</span>
               </div>
-              <p className="text-[11px] text-slate-400 leading-relaxed">
+              <p className="text-[11px] text-zinc-400 font-mono leading-relaxed">
                 Qualified in Internship Common Aptitude Test (iCAT) 2026 for national engineering internships.
               </p>
             </div>

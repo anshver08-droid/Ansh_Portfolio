@@ -11,24 +11,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#080c14",
+        background: "#030508",
         surface: {
-          50: "#131826",
-          100: "#101522",
-          200: "#0d111d",
-          300: "#090d16",
+          50: "#121722",
+          100: "#0d111a",
+          200: "#090d14",
+          300: "#05070c",
         },
         border: {
-          subtle: "#1c2438",
-          strong: "#2a3652",
+          subtle: "rgba(255, 255, 255, 0.08)",
+          strong: "rgba(255, 255, 255, 0.18)",
         },
         accent: {
-          DEFAULT: "#00d2ff",
-          hover: "#38bdf8",
-          glow: "rgba(0, 210, 255, 0.15)",
+          DEFAULT: "#00e599",
+          hover: "#05f5a5",
+          glow: "rgba(0, 229, 153, 0.2)",
+          dark: "#034d35",
         },
-        emerald: {
-          custom: "#10b981",
+        cyan: {
+          custom: "#00e599",
         },
       },
       fontFamily: {
@@ -37,12 +38,13 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-pattern": "linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)",
-        "dots-pattern": "radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
+        "vertical-stripes": "repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 12px)",
+        "stripes-dense": "repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 2px, transparent 2px, transparent 8px)",
       },
       boxShadow: {
-        glow: "0 0 25px -5px rgba(0, 210, 255, 0.2)",
-        "glow-sm": "0 0 15px -3px rgba(0, 210, 255, 0.15)",
-        card: "0 4px 20px -2px rgba(0, 0, 0, 0.5)",
+        glow: "0 0 25px -4px rgba(0, 229, 153, 0.3)",
+        "glow-sm": "0 0 15px -3px rgba(0, 229, 153, 0.2)",
+        card: "0 4px 30px -4px rgba(0, 0, 0, 0.8)",
       },
     },
   },

@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import { SKILL_CATEGORIES } from "@/data/skillsData";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Badge } from "@/components/ui/Badge";
-import { Code2, Cpu, Database, Globe, Layers, BookOpen, Search, Check } from "lucide-react";
+import { Code2, Cpu, Database, Globe, Layers, BookOpen, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SkillsSection() {
@@ -52,16 +51,16 @@ export function SkillsSection() {
         />
 
         {/* Filter & Search Bar */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-white/10">
           {/* Category Tabs */}
           <div className="flex flex-wrap items-center gap-1.5 overflow-x-auto pb-1">
             <button
               onClick={() => setActiveCategory("All")}
               className={cn(
-                "px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400",
+                "px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all focus:outline-none",
                 activeCategory === "All"
-                  ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
-                  : "bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-border-subtle"
+                  ? "bg-accent text-black font-bold shadow-[0_0_15px_-3px_rgba(0,229,153,0.4)]"
+                  : "bg-surface-100 text-zinc-400 hover:text-white border border-white/5"
               )}
             >
               All ({SKILL_CATEGORIES.length})
@@ -72,10 +71,10 @@ export function SkillsSection() {
                 key={cat.category}
                 onClick={() => setActiveCategory(cat.category)}
                 className={cn(
-                  "px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400",
+                  "px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all focus:outline-none",
                   activeCategory === cat.category
-                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
-                    : "bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-border-subtle"
+                    ? "bg-accent text-black font-bold shadow-[0_0_15px_-3px_rgba(0,229,153,0.4)]"
+                    : "bg-surface-100 text-zinc-400 hover:text-white border border-white/5"
                 )}
               >
                 {cat.category}
@@ -85,13 +84,13 @@ export function SkillsSection() {
 
           {/* Quick Filter Search */}
           <div className="relative min-w-[220px]">
-            <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Filter skills..."
-              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-950 border border-border-subtle text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 font-mono"
+              placeholder="Filter competencies..."
+              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-surface-100 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-accent font-mono"
             />
           </div>
         </div>
@@ -104,24 +103,24 @@ export function SkillsSection() {
             return (
               <div
                 key={group.category}
-                className="p-6 rounded-2xl border border-border-subtle bg-slate-900/40 hover:bg-slate-900/70 transition-all flex flex-col justify-between group"
+                className="p-7 rounded-3xl border border-white/10 bg-surface-100/40 hover:bg-surface-100/70 transition-all flex flex-col justify-between group shadow-card"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <div className="p-1.5 rounded-md bg-cyan-950/40 border border-cyan-800/40 text-cyan-400">
-                        <Icon className="w-3.5 h-3.5" />
+                      <div className="p-2 rounded-lg bg-black/60 border border-white/10 text-accent">
+                        <Icon className="w-4 h-4" />
                       </div>
-                      <h3 className="text-sm font-bold text-slate-100">
+                      <h3 className="text-base font-bold text-white uppercase tracking-tight">
                         {group.category}
                       </h3>
                     </div>
-                    <span className="text-[10px] font-mono text-slate-500">
+                    <span className="text-[10px] font-mono text-zinc-500">
                       {group.badge}
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-400 mb-4 leading-relaxed">
+                  <p className="text-xs text-zinc-400 font-mono mb-5 leading-relaxed">
                     {group.description}
                   </p>
 
@@ -129,15 +128,15 @@ export function SkillsSection() {
                     {group.skills.map((skill) => (
                       <div
                         key={skill.name}
-                        className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80 hover:border-slate-700 transition-colors"
+                        className="p-3 rounded-xl bg-black/60 border border-white/5 hover:border-white/15 transition-colors"
                       >
                         <div className="flex items-center justify-between gap-2 mb-0.5">
-                          <span className="text-xs font-semibold text-slate-200 font-mono">
+                          <span className="text-xs font-semibold text-white font-mono">
                             {skill.name}
                           </span>
                         </div>
                         {skill.description && (
-                          <p className="text-[11px] text-slate-400 leading-normal">
+                          <p className="text-[11px] text-zinc-400 font-mono leading-normal">
                             {skill.description}
                           </p>
                         )}

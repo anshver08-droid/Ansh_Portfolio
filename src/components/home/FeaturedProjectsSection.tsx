@@ -22,21 +22,21 @@ export function FeaturedProjectsSection() {
         </div>
 
         {/* Technical Interview Defensibility Banner */}
-        <div className="mt-12 p-4 rounded-xl border border-border-subtle bg-slate-950/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="mt-12 p-4 rounded-xl border border-white/10 bg-white/[0.02] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-zinc-400">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-400">
+            <div className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-accent">
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
-              <span className="font-semibold text-slate-200 block">
+              <span className="font-semibold text-white block">
                 Technical Interview Defensibility
               </span>
-              <span>
+              <span className="text-zinc-400">
                 All contributions, invariants, exclusion constraints, and test harnesses are backed by verified source code.
               </span>
             </div>
           </div>
-          <div className="font-mono text-cyan-400/90 whitespace-nowrap">
+          <div className="font-mono text-accent whitespace-nowrap">
             3 Core Verified Repositories
           </div>
         </div>

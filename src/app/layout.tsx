@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#080c14",
+  themeColor: "#030508",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,

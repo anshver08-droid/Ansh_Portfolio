@@ -1,8 +1,7 @@
 import React from "react";
 import { ACHIEVEMENTS } from "@/data/portfolioData";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Trophy, Award, CheckCircle2, ShieldCheck, Flag, Sparkles } from "lucide-react";
-import { Badge } from "@/components/ui/Badge";
+import { Trophy, ShieldCheck } from "lucide-react";
 
 export function AchievementsSection() {
   return (
@@ -19,29 +18,29 @@ export function AchievementsSection() {
           {ACHIEVEMENTS.map((item, idx) => (
             <div
               key={idx}
-              className="p-6 sm:p-7 rounded-2xl border border-border-subtle bg-slate-900/40 hover:bg-slate-900/70 hover:border-slate-700 transition-all flex flex-col justify-between group"
+              className="p-7 rounded-3xl border border-white/10 bg-surface-100/40 hover:bg-surface-100/70 hover:border-white/20 transition-all flex flex-col justify-between group shadow-card"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-2.5 rounded-xl bg-cyan-950/50 border border-cyan-800/40 text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                  <div className="p-2 rounded-lg bg-black/60 border border-white/10 text-accent group-hover:text-[#05f5a5] transition-colors">
                     <Trophy className="w-4 h-4" />
                   </div>
-                  <Badge variant="cyan" size="sm" className="font-mono text-[10px]">
+                  <span className="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded border border-emerald-500/40 bg-emerald-950/40 text-accent">
                     {item.badge}
-                  </Badge>
+                  </span>
                 </div>
 
-                <h3 className="text-base font-bold text-slate-100 group-hover:text-cyan-300 transition-colors mb-2">
+                <h3 className="text-base font-bold text-white group-hover:text-accent transition-colors mb-2 uppercase tracking-tight">
                   {item.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4 font-mono">
                   {item.detail}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span className="text-cyan-400 font-semibold">{item.highlight}</span>
+              <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-zinc-400">
+                <span className="text-accent font-semibold">{item.highlight}</span>
                 <span>{item.year}</span>
               </div>
             </div>
@@ -49,13 +48,13 @@ export function AchievementsSection() {
         </div>
 
         {/* Recruiter Transparency Banner */}
-        <div className="mt-12 p-4 rounded-xl border border-border-subtle bg-slate-950/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="mt-12 p-4 rounded-2xl border border-white/10 bg-black/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-zinc-400">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-400">
+            <div className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-accent">
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
-              <span className="font-semibold text-slate-200 block">
+              <span className="font-semibold text-white block">
                 100% Factually Grounded
               </span>
               <span>
@@ -63,7 +62,7 @@ export function AchievementsSection() {
               </span>
             </div>
           </div>
-          <div className="font-mono text-emerald-400/90 whitespace-nowrap">
+          <div className="text-accent whitespace-nowrap">
             Zero Unverified Claims
           </div>
         </div>

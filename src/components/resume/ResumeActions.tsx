@@ -85,31 +85,31 @@ ${RESUME_DATA.achievements.map((a) => `• ${a.title}: ${a.detail}`).join("\n")}
   return (
     <div className="print:hidden space-y-4">
       {/* Top Navigation Row */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border-subtle">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors py-1"
+          className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-accent transition-colors py-1"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Return to Interactive Portfolio</span>
+          <ArrowLeft className="w-4 h-4 text-accent" />
+          <span>← Return to Interactive Portfolio</span>
         </Link>
 
-        <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+        <div className="flex items-center gap-2 text-xs font-mono text-accent">
           <ShieldCheck className="w-4 h-4" />
           <span>100% Machine Parsable & Recruiter Friendly</span>
         </div>
       </div>
 
       {/* Action Buttons Toolbar */}
-      <div className="p-4 rounded-2xl bg-slate-900/80 border border-border-subtle flex flex-wrap items-center justify-between gap-3 shadow-lg">
+      <div className="p-4 rounded-2xl bg-[#06090e] border border-white/10 flex flex-wrap items-center justify-between gap-3 shadow-lg">
         {/* Left: View Mode Toggle */}
-        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-950 border border-slate-800">
+        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/60 border border-white/10">
           <button
             onClick={() => onToggleViewMode?.("ats")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               viewMode === "ats"
-                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-accent/15 text-accent border border-accent/30"
+                : "text-zinc-400 hover:text-white"
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -120,8 +120,8 @@ ${RESUME_DATA.achievements.map((a) => `• ${a.title}: ${a.detail}`).join("\n")}
             onClick={() => onToggleViewMode?.("pdf")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               viewMode === "pdf"
-                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-accent/15 text-accent border border-accent/30"
+                : "text-zinc-400 hover:text-white"
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -134,7 +134,7 @@ ${RESUME_DATA.achievements.map((a) => `• ${a.title}: ${a.detail}`).join("\n")}
           <a
             href={PERSONAL_INFO.resumePdfUrl}
             download="Ansh_Verma_Resume.pdf"
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-accent hover:bg-accent/90 text-black transition-all shadow-[0_0_15px_-3px_rgba(0,229,153,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Resume (PDF)</span>
@@ -142,24 +142,24 @@ ${RESUME_DATA.achievements.map((a) => `• ${a.title}: ${a.detail}`).join("\n")}
 
           <button
             onClick={handlePrint}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-accent/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
-            <Printer className="w-3.5 h-3.5 text-cyan-400" />
+            <Printer className="w-3.5 h-3.5 text-accent" />
             <span>Print</span>
           </button>
 
           <button
             onClick={handleCopyText}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-slate-500 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-accent/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             {copiedText ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-emerald-300">Plain Text Copied</span>
+                <Check className="w-3.5 h-3.5 text-accent" />
+                <span className="text-accent font-semibold">Plain Text Copied</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5 text-cyan-400" />
+                <Copy className="w-3.5 h-3.5 text-accent" />
                 <span>Copy Plain Text</span>
               </>
             )}

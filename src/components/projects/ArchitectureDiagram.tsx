@@ -36,18 +36,18 @@ export function ArchitectureDiagram({ steps, projectName }: ArchitectureDiagramP
   const StepIcon = getStepIcon(activeStep.type);
 
   return (
-    <div className="rounded-2xl border border-border-subtle bg-slate-950/80 p-5 sm:p-7 shadow-2xl space-y-6">
+    <div className="rounded-2xl border border-white/10 bg-[#06090e] p-5 sm:p-7 shadow-2xl space-y-6">
       {/* Title & Interactive Notice */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border-subtle">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
         <div>
-          <span className="text-[11px] font-mono text-cyan-400 uppercase tracking-wider block">
+          <span className="text-[11px] font-mono text-accent uppercase tracking-wider block">
             ARCHITECTURAL PIPELINE FLOW
           </span>
-          <h4 className="text-base sm:text-lg font-bold text-slate-100">
+          <h4 className="text-base sm:text-lg font-bold text-white">
             {projectName} Component Topology
           </h4>
         </div>
-        <div className="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+        <div className="text-xs font-mono text-zinc-400 bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/10">
           Step {activeStepIndex + 1} of {steps.length}
         </div>
       </div>
@@ -66,17 +66,17 @@ export function ArchitectureDiagram({ steps, projectName }: ArchitectureDiagramP
                 className={cn(
                   "flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-xl border text-xs font-mono transition-all",
                   isSelected
-                    ? "bg-cyan-950/40 border-cyan-500 text-cyan-300 ring-1 ring-cyan-500/30 shadow-[0_0_12px_-3px_rgba(6,182,212,0.4)]"
-                    : "bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700"
+                    ? "bg-accent/15 border-accent text-accent ring-1 ring-accent/30 shadow-[0_0_15px_-3px_rgba(0,229,153,0.3)]"
+                    : "bg-white/[0.03] border-white/10 text-zinc-400 hover:text-white hover:border-white/20"
                 )}
               >
-                <Icon className={cn("w-3.5 h-3.5", isSelected ? "text-cyan-400" : "text-slate-500")} />
-                <span className="font-semibold text-slate-300">{step.step}.</span>
+                <Icon className={cn("w-3.5 h-3.5", isSelected ? "text-accent" : "text-zinc-500")} />
+                <span className="font-semibold text-zinc-300">{step.step}.</span>
                 <span className="truncate max-w-[130px]">{step.title}</span>
               </button>
 
               {idx < steps.length - 1 && (
-                <ChevronRight className="w-3.5 h-3.5 text-slate-600 flex-shrink-0" />
+                <ChevronRight className="w-3.5 h-3.5 text-zinc-600 flex-shrink-0" />
               )}
             </React.Fragment>
           );
@@ -84,29 +84,29 @@ export function ArchitectureDiagram({ steps, projectName }: ArchitectureDiagramP
       </div>
 
       {/* Deep Stage Inspector */}
-      <div className="p-5 rounded-xl border border-border-subtle bg-slate-900/70 space-y-3">
-        <div className="flex items-center justify-between gap-3 pb-3 border-b border-border-subtle">
+      <div className="p-5 rounded-xl border border-white/10 bg-white/[0.02] space-y-3">
+        <div className="flex items-center justify-between gap-3 pb-3 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-cyan-950/60 border border-cyan-800/50 text-cyan-400">
+            <div className="p-2 rounded-lg bg-accent/10 border border-accent/30 text-accent">
               <StepIcon className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[10px] font-mono text-cyan-400 uppercase">
+              <span className="text-[10px] font-mono text-accent uppercase">
                 Stage {activeStep.step} Architecture
               </span>
-              <h5 className="text-sm sm:text-base font-bold text-slate-100">
+              <h5 className="text-sm sm:text-base font-bold text-white">
                 {activeStep.title}
               </h5>
             </div>
           </div>
           {activeStep.type && (
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 capitalize">
+            <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-black/60 text-zinc-300 border border-white/10 capitalize">
               Role: {activeStep.type}
             </span>
           )}
         </div>
 
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
           {activeStep.detail}
         </p>
 
@@ -115,14 +115,14 @@ export function ArchitectureDiagram({ steps, projectName }: ArchitectureDiagramP
           <button
             onClick={() => setActiveStepIndex((prev) => Math.max(0, prev - 1))}
             disabled={activeStepIndex === 0}
-            className="text-slate-400 hover:text-slate-200 disabled:opacity-30 disabled:hover:text-slate-400"
+            className="text-zinc-400 hover:text-white disabled:opacity-30 disabled:hover:text-zinc-400 transition-colors"
           >
             ← Previous Stage
           </button>
           <button
             onClick={() => setActiveStepIndex((prev) => Math.min(steps.length - 1, prev + 1))}
             disabled={activeStepIndex === steps.length - 1}
-            className="text-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:text-cyan-400"
+            className="text-accent hover:text-accent/80 disabled:opacity-30 disabled:hover:text-accent transition-colors"
           >
             Next Stage →
           </button>

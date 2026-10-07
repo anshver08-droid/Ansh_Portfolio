@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Github, Linkedin, FileText, ArrowUpRight } from "lucide-react";
+import { Menu, X, Github, Linkedin, FileText, ArrowRight } from "lucide-react";
 import { PERSONAL_INFO, NAV_LINKS } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +20,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when navigating
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
@@ -28,28 +27,28 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
         scrolled
-          ? "bg-slate-950/85 backdrop-blur-md border-border-subtle shadow-md"
-          : "bg-transparent border-transparent"
+          ? "bg-background/90 backdrop-blur-md border-white/10 shadow-lg"
+          : "bg-background/40 backdrop-blur-sm border-white/5"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Brand Logo / Name */}
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Brand Logo / Identity */}
           <Link
             href="/"
-            className="group flex items-center gap-2.5 text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-md py-1"
+            className="group flex items-center gap-3 text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-accent rounded-md py-1"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/30 border border-cyan-500/40 flex items-center justify-center font-mono font-bold text-sm text-cyan-400 group-hover:border-cyan-400 transition-colors">
+            <div className="w-8 h-8 rounded-lg border border-white/15 bg-surface-100 flex items-center justify-center font-mono font-bold text-xs text-accent group-hover:border-accent transition-colors shadow-[0_0_10px_-3px_rgba(0,229,153,0.3)]">
               AV
             </div>
             <div className="flex flex-col">
-              <span className="font-bold tracking-tight text-sm sm:text-base text-slate-100 group-hover:text-cyan-400 transition-colors">
+              <span className="font-bold tracking-tight text-sm sm:text-base text-white group-hover:text-accent transition-colors uppercase">
                 {PERSONAL_INFO.name}
               </span>
-              <span className="text-[10px] font-mono text-slate-400 tracking-wider uppercase -mt-0.5">
-                Software Engineer
+              <span className="text-[10px] font-mono text-zinc-500 tracking-wider uppercase -mt-0.5">
+                ENGINEERING PORTFOLIO
               </span>
             </div>
           </Link>
@@ -57,7 +56,7 @@ export function Navbar() {
           {/* Desktop Navigation Links */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden lg:flex items-center gap-1 xl:gap-2 text-xs font-medium text-slate-300"
+            className="hidden lg:flex items-center gap-1 xl:gap-2 text-xs font-mono tracking-wider uppercase text-zinc-400"
           >
             {NAV_LINKS.map((link) => {
               const isResume = link.href === "/resume";
@@ -68,8 +67,8 @@ export function Navbar() {
                   key={link.label}
                   href={link.href}
                   className={cn(
-                    "px-3 py-1.5 rounded-md transition-colors hover:text-cyan-300 hover:bg-slate-900/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400",
-                    isActive && "text-cyan-400 bg-cyan-950/30 border border-cyan-800/40"
+                    "px-3 py-1.5 rounded-md transition-all hover:text-white hover:bg-white/5",
+                    isActive && "text-accent bg-emerald-950/30 border border-emerald-500/30 font-semibold"
                   )}
                 >
                   {link.label}
@@ -79,13 +78,13 @@ export function Navbar() {
           </nav>
 
           {/* Right Action Buttons */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          <div className="hidden sm:flex items-center gap-3">
             <a
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Ansh Verma's GitHub Profile"
-              className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent hover:border-border-subtle transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface-100 border border-transparent hover:border-white/10 transition-all"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -95,17 +94,17 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Ansh Verma's LinkedIn Profile"
-              className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent hover:border-border-subtle transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-surface-100 border border-transparent hover:border-white/10 transition-all"
             >
               <Linkedin className="w-4 h-4" />
             </a>
 
             <Link
               href="/resume"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 transition-all shadow-[0_0_12px_-4px_rgba(6,182,212,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider bg-surface-100 hover:bg-accent hover:text-black text-accent border border-emerald-500/40 hover:border-accent transition-all shadow-[0_0_12px_-4px_rgba(0,229,153,0.3)]"
             >
               <FileText className="w-3.5 h-3.5" />
-              <span>ATS Resume</span>
+              <span>Resume</span>
             </Link>
           </div>
 
@@ -113,15 +112,15 @@ export function Navbar() {
           <div className="flex sm:hidden items-center gap-2">
             <Link
               href="/resume"
-              className="px-2.5 py-1 text-xs font-semibold rounded bg-cyan-950/80 text-cyan-300 border border-cyan-800/50"
+              className="px-2.5 py-1 text-xs font-mono font-bold uppercase rounded border border-emerald-500/40 bg-emerald-950/40 text-accent"
             >
-              Resume
+              CV
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-label="Toggle navigation menu"
-              className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="p-2 rounded-lg text-zinc-300 hover:text-white hover:bg-surface-100"
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -131,27 +130,27 @@ export function Navbar() {
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="lg:hidden border-b border-border-subtle bg-slate-950/95 backdrop-blur-xl px-4 pt-2 pb-6 space-y-1 animate-in slide-in-from-top-2 duration-150">
-          <div className="grid grid-cols-2 gap-1 py-2">
+        <div className="lg:hidden border-b border-white/10 bg-background/95 backdrop-blur-xl px-4 pt-2 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-150">
+          <div className="grid grid-cols-2 gap-1.5 py-2">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="px-3 py-2 text-xs font-medium text-slate-200 hover:text-cyan-400 hover:bg-slate-900 rounded-md transition-colors"
+                className="px-3 py-2 text-xs font-mono uppercase tracking-wider text-zinc-300 hover:text-accent hover:bg-surface-100 rounded-md transition-colors"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          <div className="pt-3 border-t border-border-subtle flex items-center justify-between">
+          <div className="pt-3 border-t border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <a
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-md bg-slate-900 text-slate-300 hover:text-white"
+                className="p-2 rounded-md bg-surface-100 text-zinc-300 hover:text-white border border-white/10"
                 aria-label="GitHub"
               >
                 <Github className="w-4 h-4" />
@@ -160,7 +159,7 @@ export function Navbar() {
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-md bg-slate-900 text-slate-300 hover:text-white"
+                className="p-2 rounded-md bg-surface-100 text-zinc-300 hover:text-white border border-white/10"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -170,11 +169,10 @@ export function Navbar() {
             <Link
               href="/resume"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold uppercase bg-accent text-black"
             >
-              <FileText className="w-3.5 h-3.5" />
-              <span>View ATS Resume</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <span>View Resume</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>

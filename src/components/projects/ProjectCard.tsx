@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Github, ExternalLink, ShieldCheck, CheckCircle2, Cpu, Database, GitBranch } from "lucide-react";
+import { ArrowRight, Github, ExternalLink, ShieldCheck, Cpu, Database, GitBranch } from "lucide-react";
 import { ProjectDetail } from "@/data/projectsData";
-import { Badge } from "@/components/ui/Badge";
 
 interface ProjectCardProps {
   project: ProjectDetail;
@@ -19,108 +18,109 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   const CategoryIcon = getCategoryIcon(project.category);
 
   return (
-    <div className="flex flex-col justify-between rounded-2xl border border-border-subtle bg-slate-900/50 hover:bg-slate-900/80 hover:border-slate-700 transition-all duration-300 p-6 sm:p-8 relative overflow-hidden group shadow-card">
-      {/* Top subtle highlight */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent group-hover:via-cyan-400/50 transition-all" />
+    <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-surface-100/40 hover:bg-surface-100/80 hover:border-white/20 transition-all duration-300 p-7 sm:p-9 relative overflow-hidden group shadow-card">
+      {/* Top subtle highlight line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent group-hover:via-accent transition-all" />
 
-      <div>
-        {/* Header row: Index + Category + Context Badge */}
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-slate-500 font-semibold">
-              0{index + 1} //
+      {/* Large Outlined Background Index Number (Editorial Detail) */}
+      <div className="absolute top-4 right-6 font-mono font-black text-6xl sm:text-7xl text-outline-subtle select-none pointer-events-none group-hover:text-outline-emerald transition-all">
+        0{index + 1}
+      </div>
+
+      <div className="relative z-10">
+        {/* Header row: Category + Context Badge */}
+        <div className="flex flex-wrap items-center gap-2 mb-6">
+          <div className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 font-medium uppercase tracking-wider">
+            <CategoryIcon className="w-3.5 h-3.5 text-accent" />
+            <span>{project.type}</span>
+          </div>
+
+          {project.contextBadge && (
+            <span className="px-2 py-0.5 rounded font-mono text-[10px] text-accent border border-emerald-500/30 bg-emerald-950/40 font-semibold">
+              {project.contextBadge}
             </span>
-            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400/90 font-medium">
-              <CategoryIcon className="w-3.5 h-3.5" />
-              <span>{project.type}</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-1.5">
-            {project.contextBadge && (
-              <Badge variant="mono" size="sm" className="text-[10px] text-cyan-300 border-cyan-800/60">
-                {project.contextBadge}
-              </Badge>
-            )}
-          </div>
+          )}
         </div>
 
         {/* Project Title & Tagline */}
-        <h3 className="text-xl sm:text-2xl font-bold text-slate-100 group-hover:text-cyan-300 transition-colors">
+        <h3 className="text-2xl sm:text-3xl font-black text-white group-hover:text-accent transition-colors uppercase tracking-tight">
           <Link href={`/projects/${project.slug}`}>
             {project.name}
           </Link>
         </h3>
-        <p className="text-xs font-mono text-slate-400 mt-1 mb-3">
+        <p className="text-xs font-mono text-zinc-400 mt-1 mb-5">
           {project.tagline}
         </p>
 
         {/* Role & Contribution Callout */}
-        <div className="mb-4 p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs">
-          <div className="flex items-center gap-1.5 text-cyan-400 font-mono text-[11px] font-semibold mb-0.5">
+        <div className="mb-5 p-3 rounded-xl bg-black/60 border border-white/5 text-xs font-mono">
+          <div className="flex items-center gap-1.5 text-accent text-[11px] font-semibold mb-0.5">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>My Contribution: {project.contributionBadge}</span>
+            <span>Contribution: {project.contributionBadge}</span>
           </div>
-          <p className="text-slate-400 text-[11px]">
-            Role: <span className="text-slate-300">{project.role}</span>
+          <p className="text-zinc-500 text-[11px]">
+            Role: <span className="text-zinc-300">{project.role}</span>
           </p>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-slate-300 leading-relaxed mb-5">
+        <p className="text-sm text-zinc-300 leading-relaxed mb-6">
           {project.oneLiner}
         </p>
 
         {/* Key CV Bullets */}
         <div className="mb-6 space-y-2">
-          <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">
-            Verified Technical Highlights
+          <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">
+            VERIFIED HIGHLIGHTS
           </span>
-          <ul className="space-y-1.5 text-xs text-slate-300">
+          <ul className="space-y-2 text-xs text-zinc-300 font-mono">
             {project.cvBullets.slice(0, 3).map((bullet, bIdx) => (
-              <li key={bIdx} className="flex items-start gap-2 text-[11px] sm:text-xs">
-                <span className="text-cyan-400 font-mono flex-shrink-0 mt-0.5">▸</span>
-                <span className="leading-relaxed">{bullet}</span>
+              <li key={bIdx} className="flex items-start gap-2 text-[11px]">
+                <span className="text-accent flex-shrink-0 mt-0.5">▸</span>
+                <span className="leading-relaxed text-zinc-300">{bullet}</span>
               </li>
             ))}
           </ul>
         </div>
 
         {/* Tech Stack Chips */}
-        <div className="mb-6 space-y-2">
-          <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">
-            Technology Stack
+        <div className="mb-8 space-y-2">
+          <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">
+            TECH STACK
           </span>
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.map((tech, idx) => (
-              <Badge key={idx} variant="outline" size="sm" className="text-slate-400 bg-slate-900/60 font-mono text-[10px]">
+              <span
+                key={idx}
+                className="px-2 py-0.5 rounded text-[10px] font-mono bg-black/60 border border-white/10 text-zinc-300"
+              >
                 {tech}
-              </Badge>
+              </span>
             ))}
           </div>
         </div>
       </div>
 
       {/* Action Footer: Case Study + GitHub + Live Demo */}
-      <div className="pt-6 border-t border-border-subtle flex flex-wrap items-center justify-between gap-3">
+      <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 relative z-10">
         <Link
           href={`/projects/${project.slug}`}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 transition-all group-hover:border-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono font-bold uppercase tracking-wider bg-accent text-black hover:bg-[#05f5a5] transition-all shadow-[0_0_15px_-3px_rgba(0,229,153,0.4)]"
         >
-          <span>View Deep Case Study</span>
-          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          <span>Deep Case Study</span>
+          <ArrowRight className="w-3.5 h-3.5" />
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 font-mono text-xs">
           <a
             href={project.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View ${project.name} source code on GitHub`}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-950 hover:bg-slate-800 border border-border-subtle transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-zinc-300 hover:text-white bg-black/60 hover:bg-surface-100 border border-white/10 transition-colors"
           >
-            <Github className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Repository</span>
+            <Github className="w-3.5 h-3.5 text-accent" />
+            <span>Repo</span>
           </a>
 
           {project.liveUrl && (
@@ -129,10 +129,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Open live system for ${project.name}`}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-emerald-300 hover:text-emerald-200 bg-emerald-950/30 hover:bg-emerald-950/60 border border-emerald-800/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-accent hover:text-white bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-500/40 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              <span>Live System</span>
+              <span>Live</span>
             </a>
           )}
         </div>
