@@ -1,10 +1,11 @@
 import React from "react";
 import { Hero } from "@/components/home/Hero";
 import { CapabilitiesStrip } from "@/components/home/CapabilitiesStrip";
+import { AboutSection } from "@/components/home/AboutSection";
 import { FeaturedProjectsSection } from "@/components/home/FeaturedProjectsSection";
 import { EngineeringPrinciples } from "@/components/home/EngineeringPrinciples";
 import { SkillsSection } from "@/components/home/SkillsSection";
-import { AboutSection } from "@/components/home/AboutSection";
+import { CertificationsSection } from "@/components/home/CertificationsSection";
 import { AchievementsSection } from "@/components/home/AchievementsSection";
 import { EducationSection } from "@/components/home/EducationSection";
 import { FreelanceSection } from "@/components/home/FreelanceSection";
@@ -17,34 +18,37 @@ export default function HomePage() {
       {/* 01. Hero */}
       <Hero />
 
-      {/* 02. What I Build / Capabilities Strip */}
+      {/* 02. Capabilities Strip */}
       <CapabilitiesStrip />
 
-      {/* 03. Featured Projects & Case Studies */}
-      <FeaturedProjectsSection />
+      {/* 03. About Section */}
+      <AboutSection />
 
-      {/* 04. Engineering Thinking ("How I Think About Software") */}
-      <EngineeringPrinciples />
+      {/* 04. Featured Projects (DevPartner AI, HealthBuddy AI, TableKeeper) */}
+      <FeaturedProjectsSection />
 
       {/* 05. Technical Skills Matrix */}
       <SkillsSection />
 
-      {/* 06. Professional About */}
-      <AboutSection />
+      {/* 06. Technical Certifications & Workshops */}
+      <CertificationsSection />
 
-      {/* 07. Hackathons & Leadership Achievements */}
+      {/* 07. Hackathons & Verified Achievements */}
       <AchievementsSection />
 
-      {/* 08. Education Curriculum & Certifications */}
+      {/* 08. Education Curriculum */}
       <EducationSection />
 
-      {/* 09. Freelance Technical Services */}
+      {/* 09. Engineering Principles */}
+      <EngineeringPrinciples />
+
+      {/* 10. Freelance & Contract Services */}
       <FreelanceSection />
 
-      {/* 10. Recruiter & ATS Resume Callout */}
+      {/* 11. Recruiter & ATS Resume Callout */}
       <ResumeCtaSection />
 
-      {/* 11. Direct Contact & Collaboration */}
+      {/* 12. Direct Contact & Collaboration */}
       <ContactSection />
     </div>
   );

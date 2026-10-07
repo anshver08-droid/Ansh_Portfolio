@@ -9,10 +9,10 @@ export function FeaturedProjectsSection() {
     <section id="projects" className="py-20 lg:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          number="02"
+          number="03"
           badge="FEATURED PROJECTS"
-          title="Engineered Systems & Verified Case Studies"
-          subtitle="Three core projects built around transactional correctness, verified AI workflows, and responsible domain applications. Supported by public source code and architectural documentation."
+          title="Engineered Systems & Verified Codebases"
+          subtitle="Three major projects from the verified CV spanning AI-powered developer verification, responsible healthcare pre-consultation, and transactional backend reservation APIs."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -32,12 +32,12 @@ export function FeaturedProjectsSection() {
                 Technical Interview Defensibility
               </span>
               <span>
-                All architectural claims, database constraints, and pipeline stages can be defended in depth.
+                All contributions, invariants, exclusion constraints, and test harnesses are backed by verified source code.
               </span>
             </div>
           </div>
           <div className="font-mono text-cyan-400/90 whitespace-nowrap">
-            3 Repositories Verified
+            3 Core Verified Repositories
           </div>
         </div>
       </div>

@@ -46,13 +46,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#principles" className="hover:text-cyan-400 transition-colors">
-                  Engineering Principles
+                <Link href="/#skills" className="hover:text-cyan-400 transition-colors">
+                  Technical Skills Matrix
                 </Link>
               </li>
               <li>
-                <Link href="/#skills" className="hover:text-cyan-400 transition-colors">
-                  Technical Skills Matrix
+                <Link href="/#certifications" className="hover:text-cyan-400 transition-colors">
+                  Certifications & Training
+                </Link>
+              </li>
+              <li>
+                <Link href="/#achievements" className="hover:text-cyan-400 transition-colors">
+                  Hackathons & Milestones
                 </Link>
               </li>
               <li>
@@ -62,7 +67,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/resume" className="hover:text-cyan-400 transition-colors font-medium text-cyan-300">
-                  ATS Resume Viewer
+                  Official CV & Resume
                 </Link>
               </li>
             </ul>

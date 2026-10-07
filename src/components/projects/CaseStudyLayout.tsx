@@ -108,6 +108,29 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
           </div>
         </div>
 
+        {/* Verified CV Technical Highlights */}
+        {project.cvBullets && project.cvBullets.length > 0 && (
+          <div className="p-6 rounded-2xl bg-cyan-950/20 border border-cyan-800/40 space-y-3">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-mono text-cyan-300 font-bold uppercase tracking-wider flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span>Verified CV Technical Highlights & Contributions</span>
+              </span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-700">
+                Primary Source
+              </span>
+            </div>
+            <ul className="space-y-2 text-xs sm:text-sm text-slate-200">
+              {project.cvBullets.map((bullet, bIdx) => (
+                <li key={bIdx} className="flex items-start gap-2.5">
+                  <span className="text-cyan-400 font-mono flex-shrink-0 mt-0.5">▸</span>
+                  <span className="leading-relaxed">{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {/* 01 — Overview */}
         <section className="space-y-4">
           <h2 className="text-xl sm:text-2xl font-bold text-slate-100 flex items-center gap-2">

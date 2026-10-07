@@ -13,11 +13,14 @@ export interface ProjectDetail {
   category: string;
   type: string;
   role: string;
+  contributionBadge: string;
+  contextBadge?: string;
   repoUrl: string;
   liveUrl?: string;
   statusBadge: string;
   technologies: string[];
   keyConcepts: string[];
+  cvBullets: string[];
   overview: string;
   problem: string;
   whyHard: string;
@@ -45,58 +48,319 @@ export interface ProjectDetail {
 
 export const PROJECTS: ProjectDetail[] = [
   {
+    slug: "devpartner-ai",
+    name: "DevPartner AI",
+    tagline: "AI-Powered Developer Workflow",
+    oneLiner:
+      "An AI-powered developer workflow designed to make code changes safer and more reliable through intent extraction, invariant identification, impact analysis, risk assessment, human approval, isolated patches, verification, mutation testing, and adversarial counterexamples.",
+    category: "AI & Developer Tooling",
+    type: "AI Developer Tool / Verification Workflow",
+    role: "Testing / Verification / Debugging Contributor",
+    contributionBadge: "Testing & Verification Layer Contributor",
+    contextBadge: "IBM Bob 2.0 Hackathon",
+    repoUrl: "https://github.com/anshver08-droid/DevPartnerAI_TeamRookies.git",
+    liveUrl: "https://dev-partner-ai-team-rookies.vercel.app",
+    statusBadge: "Live Production Prototype",
+    technologies: ["React", "TypeScript", "Vite", "Node.js", "Git/GitHub", "AI-Assisted Development"],
+    keyConcepts: [
+      "Invariant Checking (harness.ts)",
+      "Mutation Testing",
+      "Adversarial Counterexamples",
+      "Human Approval Gate",
+      "Verification Panels",
+      "Isolated Patch Execution",
+    ],
+    cvBullets: [
+      "Contributed to the testing and verification layer of a team-built workflow that makes code changes safer through impact analysis, human approval, isolated patches, and an accept/rollback decision.",
+      "Implemented invariant-checking and verification logic in TypeScript (harness.ts) to validate proposed code changes against identified invariants.",
+      "Built React components (InvariantPanel, VerificationPanel, CounterexamplePanel) that display invariants, verification results, and adversarial counterexamples.",
+      "Supported mutation-testing and adversarial-testing workflows and debugged verification behavior so failing cases were visible to reviewers.",
+    ],
+    overview:
+      "DevPartner AI was developed for the IBM Bob 2.0 Hackathon as a team-built workflow to solve a core failure mode in AI-assisted development: unverified code generation. My specific contribution focused on the testing, verification, and debugging layer—implementing invariant-checking logic in TypeScript (src/lib/harness.ts), building dedicated verification UI panels in React, and supporting mutation-testing and adversarial-testing workflows so failing edge cases are made explicit before any code is approved.",
+    problem:
+      "Modern LLMs generate syntactically convincing code that frequently introduces subtle regressions, violates unspoken architectural invariants, degrades test suites, or introduces security vulnerabilities. Developers lack automated verification mechanisms to validate AI patches beyond basic unit tests.",
+    whyHard:
+      "LLMs suffer from confirmation bias and hallucinated correctness: asking an LLM 'is this code correct?' usually results in false reassurance. Verification requires independent analytical phases: extracting behavioral invariants, running mutation tests to check test strength, generating adversarial inputs, and summarizing evidence for human decision-making.",
+    solution:
+      "DevPartner AI introduces an isolated multi-stage verification pipeline. Proposed changes are validated against behavioral invariants using a TypeScript harness, checked with mutation tests and adversarial counterexamples, and surfaced through clean React panels (InvariantPanel, VerificationPanel, CounterexamplePanel) for human review and an accept/rollback decision.",
+    architectureWorkflow: [
+      { step: "01", title: "Developer Request", detail: "Natural language feature request or bug report submitted by the developer.", type: "client" },
+      { step: "02", title: "Intent Extraction", detail: "Formal semantic parsing of developer intent and code boundaries.", type: "ai" },
+      { step: "03", title: "Invariants Identification", detail: "Identification of behavioral invariants that must never be broken.", type: "logic" },
+      { step: "04", title: "Impact & Risk Analysis", detail: "Dependency graph blast-radius analysis and risk assessment.", type: "logic" },
+      { step: "05", title: "Implementation Plan", detail: "Structured, step-by-step diff plan generated with explicit constraints.", type: "ai" },
+      { step: "06", title: "Human Approval Gate", detail: "Mandatory human review of risk score and plan before code generation occurs.", type: "human" },
+      { step: "07", title: "Isolated Patch", detail: "Code modification generated and applied in an isolated virtual patch sandbox.", type: "logic" },
+      { step: "08", title: "Verification (harness.ts)", detail: "TypeScript verification harness validates proposed changes against identified invariants.", type: "verification" },
+      { step: "09", title: "Mutation Testing", detail: "Injects synthetic faults to ensure test suite detects behavioral regressions.", type: "verification" },
+      { step: "10", title: "Adversarial Counterexamples", detail: "Generates stress-test counterexamples to expose subtle boundary failures.", type: "verification" },
+      { step: "11", title: "Evidence Report", detail: "Displays verification results, mutation scores, and invariants on the developer dashboard.", type: "ai" },
+      { step: "12", title: "Accept or Rollback", detail: "Human reviewer commits verified patch or executes instant clean rollback.", type: "human" },
+    ],
+    engineeringDecisions: [
+      {
+        decision: "Invariant Checking via TypeScript Test Harness (harness.ts)",
+        rationale: "Rather than trusting LLM self-evaluations, implemented deterministic invariant checks in TypeScript to validate code changes against identified system invariants.",
+        tradeoff: "Requires upfront definition of behavioral assertions, but delivers objective, reproducible verification.",
+      },
+      {
+        decision: "Dedicated Invariant, Verification & Counterexample Panels",
+        rationale: "Engineered InvariantPanel, VerificationPanel, and CounterexamplePanel in React to make verification results transparent rather than hiding them behind a black-box score.",
+        tradeoff: "Increases UI information density, but gives developers the exact evidence needed to make informed decisions.",
+      },
+      {
+        decision: "Mutation Testing over Raw Coverage",
+        rationale: "High line coverage often tests trivial code paths. Mutation testing injects faults to verify that assertions actually catch bugs.",
+        tradeoff: "Requires additional computation time during verification, but provides high confidence.",
+      },
+      {
+        decision: "Transparent Human Approval Gate",
+        rationale: "Retained human decision authority at both the planning phase and the final accept/rollback phase.",
+        tradeoff: "Introduces an explicit review step, eliminating rogue uninspected modifications.",
+      },
+    ],
+    technicalImplementation: [
+      {
+        title: "Verification Logic & Test Harness (src/lib/harness.ts)",
+        points: [
+          "Implemented invariant-checking logic in TypeScript to systematically validate code proposals.",
+          "Constructed execution harnesses to run test suites against isolated patches.",
+          "Debugged verification behaviors so failing tests and edge cases were clearly identified.",
+        ],
+      },
+      {
+        title: "React Component Architecture",
+        points: [
+          "Built InvariantPanel.tsx to render extracted invariants and their satisfaction status.",
+          "Engineered VerificationPanel.tsx to aggregate test suite executions, assertions, and status badges.",
+          "Created CounterexamplePanel.tsx to display adversarial counterexamples and boundary inputs.",
+        ],
+      },
+      {
+        title: "Workflow Integration & UI",
+        points: [
+          "Developed with React, TypeScript, Vite, and Tailwind CSS for rapid build times and responsive rendering.",
+          "Integrated Git/GitHub branching and patch diff tracking.",
+        ],
+      },
+    ],
+    securityAndReliability: [
+      "Isolated patch application ensures experimental AI changes do not mutate production state prematurely.",
+      "Deterministic invariant checking prevents silent regression of core business logic.",
+      "Adversarial counterexample generation stress-tests input validation and null-pointer edge cases.",
+      "Mandatory human sign-off before patch integration protects codebase integrity.",
+    ],
+    testingStrategy: [
+      "Mutation testing workflows injecting synthetic code mutations to verify detection sensitivity.",
+      "Adversarial testing suites evaluating pipeline stability when fed boundary or hostile inputs.",
+      "TypeScript type checking and linting across harness and component modules.",
+    ],
+    challengesAndMitigations: [
+      {
+        challenge: "Making failing verification edge cases obvious and actionable to developers.",
+        mitigation: "Engineered CounterexamplePanel.tsx to surface the exact input, expected output, and actual outcome that triggered the invariant failure.",
+      },
+      {
+        challenge: "Ensuring invariant checking logic is deterministic and free from LLM hallucination.",
+        mitigation: "Built harness.ts in pure TypeScript with explicit assertion checking independent of LLM generation.",
+      },
+    ],
+    resultsAndMetrics:
+      "Successfully built and demonstrated at the IBM Bob 2.0 Hackathon with a live prototype on Vercel. Demonstrated automated invariant extraction, verification reporting, and counterexample visualization.",
+    lessonsLearned: [
+      "AI in software development is most valuable when combined with rigorous traditional software testing and verification techniques.",
+      "Developers trust AI suggestions only when presented with concrete, verifiable evidence and explicit failure modes.",
+    ],
+    futureImprovements: [
+      "Expand harness.ts with automated property-based testing generation.",
+      "Package verification panels as a GitHub Action and PR review bot.",
+    ],
+  },
+  {
+    slug: "healthbuddy-ai",
+    name: "HealthBuddy AI",
+    tagline: "AI Pre-Consultation Assistant",
+    oneLiner:
+      "A human-in-the-loop AI-powered pre-consultation intake assistant converting natural patient conversations into structured clinical case sheets and doctor-ready summaries, without diagnosing or prescribing.",
+    category: "AI & Full-Stack",
+    type: "Generative AI / Healthcare UX / Full-Stack",
+    role: "Full-Stack & AI Integration Engineer",
+    contributionBadge: "Full-Stack & AI Integration",
+    contextBadge: "Hackathon Round 2 Prototype",
+    repoUrl: "https://github.com/anshver08-droid/HealthBuddy-AI.git",
+    statusBadge: "Round 2 Prototype Built",
+    technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Gemini API", "Web Speech API", "REST APIs"],
+    keyConcepts: [
+      "Human-in-the-Loop Protocol",
+      "Non-Diagnostic Boundary",
+      "Multilingual Intake (English, Hindi, Hinglish)",
+      "Clinical Information Extraction",
+      "Offline Adaptive Clinical Engine",
+      "Doctor Review Console",
+    ],
+    cvBullets: [
+      "Developed a human-in-the-loop assistant that turns natural patient conversations into structured case sheets and doctor-ready summaries, without diagnosing or prescribing.",
+      "Integrated the Google Gemini API through Next.js REST API routes for adaptive questioning in English, Hindi, and Hinglish, with an Offline Adaptive Clinical Engine for demo mode.",
+      "Implemented live clinical information extraction, completeness checking, and triage/red-flag detection, with voice and text input via the browser Web Speech API.",
+      "Built a doctor review console with editing, notes, digital verification, and audit-ready transcripts across the onboarding-to-summary flow.",
+    ],
+    overview:
+      "HealthBuddy AI was built as a Hackathon Round 2 prototype to solve the clinical intake bottleneck. It acts as an intelligent pre-consultation assistant that turns conversational symptom accounts in English, Hindi, and Hinglish into clean, structured case sheets and doctor-ready summaries. Crucially, it maintains a strict human-in-the-loop boundary: it never diagnoses diseases or prescribes medications; instead, it equips doctors with an audit-ready summary and editing console for clinical review.",
+    problem:
+      "Clinical consultations are severely time-constrained. Patients often struggle to articulate their timeline of symptoms, omit critical context, or express symptoms in mixed colloquial vernacular (such as Hindi or Hinglish). Doctors spend excessive consultation time taking basic historical notes rather than evaluating and treating patients.",
+    whyHard:
+      "Healthcare applications require uncompromising safety. Medical hallucinations, unsupported diagnostic assertions, or premature medical advice from an LLM can mislead patients and cause clinical harm. Furthermore, patients frequently use ambiguous colloquialisms that standard NLP tools fail to parse accurately.",
+    solution:
+      "HealthBuddy AI enforces a strict non-diagnostic boundary. It gathers patient symptom accounts via text or browser Web Speech API, utilizes adaptive questioning via Google Gemini API in English, Hindi, and Hinglish, and extracts structured clinical entities (chief complaint, duration, severity, medications). It includes triage/red-flag detection, completeness checking, an Offline Adaptive Clinical Engine for demo mode, and a complete doctor review console supporting notes, edits, and digital verification.",
+    architectureWorkflow: [
+      { step: "01", title: "Patient Interaction", detail: "Patient enters symptoms via voice (browser Web Speech API) or text in English, Hindi, or Hinglish.", type: "client" },
+      { step: "02", title: "REST API Gateway", detail: "Next.js REST API routes handle request routing and input sanitization.", type: "api" },
+      { step: "03", title: "Adaptive Dialogue", detail: "Gemini API (or Offline Clinical Engine) conducts guided adaptive follow-up questions.", type: "ai" },
+      { step: "04", title: "Clinical Extraction", detail: "Extracts structured clinical information (chief complaint, timeline, triggers).", type: "ai" },
+      { step: "05", title: "Completeness & Triage", detail: "Performs completeness checking and screens for acute red-flag symptoms.", type: "logic" },
+      { step: "06", title: "Structured Case Sheet", detail: "Formats conversational inputs into a standard pre-consultation case sheet.", type: "logic" },
+      { step: "07", title: "Doctor Review Console", detail: "Doctor edits notes, reviews audit-ready transcripts, and adds clinical observations.", type: "human" },
+      { step: "08", title: "Verified Summary", detail: "Doctor digitally verifies summary for the final consultation record.", type: "human" },
+    ],
+    engineeringDecisions: [
+      {
+        decision: "Strict Non-Diagnostic Boundary Enforced by Design",
+        rationale: "The AI is explicitly forbidden from naming medical diagnoses or suggesting treatments, ensuring patient safety and compliance.",
+        tradeoff: "Prevents conversational 'advice' that some users expect, but adheres strictly to medical ethics.",
+      },
+      {
+        decision: "Doctor Review Console with Digital Verification",
+        rationale: "The doctor remains the final authority, able to edit fields, add clinical notes, and digitally verify the intake document.",
+        tradeoff: "Requires physician time to review, which is the necessary standard of care.",
+      },
+      {
+        decision: "Offline Adaptive Clinical Engine for Demo Mode",
+        rationale: "Engineered an offline clinical logic engine alongside the Gemini API to ensure reliable evaluation and zero disruption during hackathon demos and offline connectivity.",
+        tradeoff: "Requires maintaining rule-based fallback trees, but guarantees 100% demo uptime.",
+      },
+      {
+        decision: "Multilingual Voice & Text Input (Web Speech API)",
+        rationale: "Enabled voice input in English, Hindi, and Hinglish to lower accessibility barriers for non-tech-savvy users.",
+        tradeoff: "Requires careful normalization of mixed-script speech transcripts.",
+      },
+    ],
+    technicalImplementation: [
+      {
+        title: "AI & Next.js API Routes",
+        points: [
+          "Built on Next.js 16 and React 19 with strict TypeScript typing across all API route handlers.",
+          "Integrated Google Gemini API with system guardrails enforcing zero fabrication and structured JSON output.",
+          "Engineered the Offline Adaptive Clinical Engine for offline demo resiliency.",
+        ],
+      },
+      {
+        title: "Voice UX & Accessibility",
+        points: [
+          "Implemented browser Web Speech API for real-time speech-to-text recognition.",
+          "Responsive, accessible styling using Tailwind CSS with high contrast and readable typography.",
+        ],
+      },
+      {
+        title: "Doctor Review Workflow",
+        points: [
+          "Built full doctor console: live editing, notes addition, digital verification, and audit-ready transcripts.",
+          "Maintains end-to-end traceability from patient voice input to physician sign-off.",
+        ],
+      },
+    ],
+    securityAndReliability: [
+      "Prominent non-diagnostic disclaimers across all screens: assistant only, not a doctor.",
+      "Red-flag detection immediately surfaces critical emergency escalation notices.",
+      "Audit-ready chronological transcripts preserve exact patient statements for physician verification.",
+      "Client-side session handling prevents unauthorized retention of private medical accounts.",
+    ],
+    testingStrategy: [
+      "Simulated patient dialogues across English, Hindi, and Hinglish phrases to test entity extraction.",
+      "Adversarial prompting testing to ensure system refuses requests for medical prescriptions or autonomous diagnoses.",
+      "Red-flag screening validation to ensure emergency warnings trigger reliably.",
+    ],
+    challengesAndMitigations: [
+      {
+        challenge: "Handling colloquial Hindi and Hinglish phrases that standard NLP classifiers fail to understand.",
+        mitigation: "Combined Gemini's multilingual semantic understanding with contextual prompt few-shots and fallback clinical normalization.",
+      },
+      {
+        challenge: "Preventing patients from treating the AI intake as an authoritative doctor.",
+        mitigation: "Placed persistent, unavoidable UI banners stating 'Intake Assistant Only — Not a Medical Diagnosis' and requiring acknowledgement.",
+      },
+    ],
+    resultsAndMetrics:
+      "Built and demonstrated as a Hackathon Round 2 prototype. Successfully proved end-to-end multilingual pre-consultation intake with doctor verification.",
+    lessonsLearned: [
+      "In healthcare engineering, knowing what NOT to automate is more critical than what to automate.",
+      "Human-in-the-loop workflows make Generative AI safe and practical for clinical administrative tasks.",
+    ],
+    futureImprovements: [
+      "FHIR (Fast Healthcare Interoperability Resources) JSON standard export for integration into hospital EHR systems.",
+      "Specialized offline Whisper model fine-tuning for regional Indian dialects.",
+    ],
+  },
+  {
     slug: "tablekeeper",
     name: "TableKeeper",
-    tagline: "Transactional Reservation Engine & API",
+    tagline: "Restaurant Reservation Backend API",
     oneLiner:
-      "A high-reliability TypeScript/Fastify JSON API backed by PostgreSQL, engineered around transactional correctness, exclusion constraints, and idempotency to eliminate double-booking.",
+      "A high-reliability TypeScript/Fastify JSON REST API backed by PostgreSQL, engineered around transactional consistency, exclusion constraints, idempotency, customer verification, and secure reservation management.",
     category: "Backend & Systems",
     type: "Backend / REST API / PostgreSQL",
     role: "Backend Architect & Developer",
+    contributionBadge: "Backend Architecture & Implementation",
     repoUrl: "https://github.com/anshver08-droid/Tablekeeper.git",
     statusBadge: "Verified Backend System",
-    technologies: ["TypeScript", "Fastify", "PostgreSQL", "Docker Compose", "SQL Migrations", "Node.js"],
+    technologies: ["TypeScript", "Fastify", "PostgreSQL", "Node.js", "REST API", "Docker", "Docker Compose"],
     keyConcepts: [
-      "Transactional Correctness",
       "PostgreSQL Exclusion Constraints",
-      "Idempotency Keys",
-      "Advisory vs Committed Availability",
-      "Rate Limiting & Verification",
-      "Integration Testing",
+      "ACID Transactions & Locking",
+      "Restaurant-Scoped Idempotency",
+      "Signed Email Token Verification (SMTP)",
+      "Confirmation-Code Authorization",
+      "PostgreSQL 16 Integration Tests",
+    ],
+    cvBullets: [
+      "Engineered a Fastify and PostgreSQL JSON REST API in which a booking succeeds only when its database transaction commits.",
+      "Enforced reservation consistency with PostgreSQL exclusion constraints, locking, and transactional commits to block conflicting confirmed two-hour reservations.",
+      "Implemented restaurant-scoped idempotent requests, signed email-token customer verification (SMTP), confirmation-code authorization, and rate limiting.",
+      "Validated with PostgreSQL 16 integration tests, migration upgrade tests, and TypeScript type checking; packaged with Docker Compose.",
     ],
     overview:
-      "TableKeeper is a production-style reservation backend built with TypeScript and Fastify, backed by PostgreSQL. Its fundamental design invariant is that a reservation succeeds strictly when the reservation row commits within a database transaction; availability checks prior to booking are treated as advisory and transient.",
+      "TableKeeper is a backend reservation API built with TypeScript and Fastify, backed by PostgreSQL 16. Its core engineering principle is that a reservation succeeds strictly when the reservation database transaction commits. It uses PostgreSQL exclusion constraints and locking to block conflicting confirmed two-hour reservations at the database level, with restaurant-scoped idempotency, customer email verification, and Docker Compose packaging.",
     problem:
-      "In high-demand booking platforms (restaurants, events, travel), concurrent user requests frequently target the same limited inventory slots simultaneously. Naive approaches rely on application-level checks (e.g. SELECT count < capacity followed by INSERT), leading to severe race conditions, duplicate bookings, and corrupt state when traffic spikes.",
+      "In reservation systems, concurrent booking requests frequently target the same physical resource at the same time. Naive implementations rely on application-level checks (e.g., SELECT followed by INSERT), which fail under concurrent load, leading to double-bookings, corrupt state, and race conditions.",
     whyHard:
       "Network latency between application instances and the database means read-modify-write patterns are inherently susceptible to race windows. Optimistic locking requires complex retry storms, while coarse pessimistic table locking cripples throughput. Furthermore, client network disconnects during in-flight payments or confirmations risk duplicate records unless idempotency is strictly enforced.",
     solution:
       "TableKeeper enforces data integrity at the database storage engine level through PostgreSQL exclusion constraints and transactional isolation. A reservation request requires an idempotency key and email verification token. The booking transaction atomically verifies inventory, inserts the reservation range, and updates quota in a single committed transaction, guaranteeing that double bookings are physically prevented by the database engine.",
     architectureWorkflow: [
       { step: "01", title: "Client Discovery", detail: "Client queries restaurant endpoints and retrieves advisory seat availability.", type: "client" },
-      { step: "02", title: "Email Verification", detail: "Customer initiates verification token cycle to prevent spam and ghost bookings.", type: "api" },
-      { step: "03", title: "Fastify Gateway", detail: "Request arrives with Idempotency-Key; schema validation and rate limiting are evaluated.", type: "api" },
-      { step: "04", title: "Idempotency Lookup", detail: "Checks if the idempotency key exists in cache/database to return cached response on retry.", type: "logic" },
-      { step: "05", title: "Transaction Boundary", detail: "Begins PostgreSQL transaction with strict isolation and exclusion lock evaluation.", type: "db" },
-      { step: "06", title: "Constraint Validation", detail: "PostgreSQL exclusion constraint (tsrange overlap) evaluates against existing bookings.", type: "db" },
-      { step: "07", title: "Atomic Commit", detail: "Reservation row commits, capacity counter decrements, and status updates atomically.", type: "db" },
-      { step: "08", title: "Confirmation Response", detail: "Client receives 201 Created with booking ID, signed ticket, and verification payload.", type: "api" },
+      { step: "02", title: "Signed Email Token (SMTP)", detail: "Customer initiates signed email-token verification to validate identity.", type: "api" },
+      { step: "03", title: "Fastify API Gateway", detail: "Validates request payload schemas, rate limits, and Idempotency-Key headers.", type: "api" },
+      { step: "04", title: "Restaurant-Scoped Idempotency", detail: "Checks idempotency store to prevent duplicate booking mutations upon network retries.", type: "logic" },
+      { step: "05", title: "Transaction Boundary", detail: "Begins PostgreSQL ACID transaction with row-level locking.", type: "db" },
+      { step: "06", title: "PostgreSQL Exclusion Constraint", detail: "Database exclusion constraint blocks conflicting confirmed two-hour reservations.", type: "db" },
+      { step: "07", title: "Transactional Commit", detail: "Reservation row commits and confirmation code is generated atomically.", type: "db" },
+      { step: "08", title: "Confirmation Response", detail: "Client receives 201 Created with booking ID, confirmation code, and receipt.", type: "api" },
     ],
     engineeringDecisions: [
       {
-        decision: "Advisory Availability vs Committed Correctness",
-        rationale: "Availability queries are fast, read-only estimates. The final reservation insert within a transaction is the single source of truth.",
-        tradeoff: "A user might see an available slot that gets booked by another user milliseconds before checkout, but double booking is physically eliminated.",
+        decision: "Database Exclusion Constraints over Application Locks",
+        rationale: "PostgreSQL exclusion constraints (btree_gist) enforce non-overlapping time ranges inside the database engine, eliminating race conditions across multiple API instances.",
+        tradeoff: "Requires PostgreSQL-specific extensions and index configuration, but guarantees zero double-booking leaks.",
       },
       {
-        decision: "PostgreSQL Exclusion Constraints over App Mutexes",
-        rationale: "Distributed mutexes (e.g. Redis locks) fail when Redis crashes or network partitions occur. PostgreSQL btree_gist exclusion constraints enforce overlap invariants directly inside ACID transactions.",
-        tradeoff: "Requires PostgreSQL-specific extensions and careful index configuration, but provides zero-leak mathematical correctness.",
-      },
-      {
-        decision: "Mandatory Idempotency Keys on Mutation Endpoints",
-        rationale: "Network timeouts often lead clients to retry POST requests. Without idempotency, users get charged twice or reserve duplicate tables.",
+        decision: "Restaurant-Scoped Idempotency",
+        rationale: "Clients retrying requests due to mobile network drops must not create duplicate reservations or charges.",
         tradeoff: "Requires storing idempotency state with TTL, adding slight storage overhead per booking attempt.",
+      },
+      {
+        decision: "Signed Email-Token Verification (SMTP) & Confirmation Codes",
+        rationale: "Prevents spam reservations and ghost bookings by requiring verified customer contact tokens prior to slot commit.",
+        tradeoff: "Adds an asynchronous verification step to the customer flow.",
       },
       {
         decision: "Fastify Schema Validation & Strict Serialization",
@@ -108,24 +372,24 @@ export const PROJECTS: ProjectDetail[] = [
       {
         title: "Database Architecture & Concurrency Control",
         points: [
-          "PostgreSQL migrations managing tables: restaurants, tables, reservations, customers, and idempotency_keys.",
-          "Applied range types (tsrange) combined with table identifiers to prevent overlapping time intervals using GiST index constraints.",
-          "Connection pooling tuned to protect database connection exhaustion under burst loads.",
+          "PostgreSQL migrations managing restaurants, tables, reservations, customers, and idempotency_keys.",
+          "PostgreSQL exclusion constraints blocking overlapping confirmed two-hour reservations.",
+          "ACID transactions with row-level locking to guarantee consistency.",
         ],
       },
       {
         title: "API Gateway & Security Defenses",
         points: [
-          "Fastify plugins configured for granular IP and token-based rate limiting to thwart reservation scraping and denial-of-service attempts.",
-          "Customer email verification cycle to establish cryptographic proof of contact prior to slot reservation.",
-          "Strict CORS, security headers, and structured JSON error responses conforming to predictable error specifications.",
+          "Fastify plugins configured for granular IP and token-based rate limiting.",
+          "Restaurant-scoped idempotent request handling.",
+          "Signed email-token customer verification (SMTP) and confirmation-code authorization.",
         ],
       },
       {
         title: "Containerization & Environment",
         points: [
-          "Multi-stage Docker Compose setup provisioning both the TypeScript Node runtime and PostgreSQL database instance.",
-          "Automated migration runner ensuring deterministic schema transitions upon container startup.",
+          "Docker Compose provisioning both the TypeScript Node.js runtime and PostgreSQL 16 database.",
+          "Migration upgrade tests validating schema evolution deterministically.",
         ],
       },
     ],
@@ -136,9 +400,10 @@ export const PROJECTS: ProjectDetail[] = [
       "Connection pool isolation with graceful shutdown hooks closing database listeners cleanly on SIGTERM.",
     ],
     testingStrategy: [
-      "Integration test suite spinning up ephemeral PostgreSQL containers to assert transactional integrity.",
-      "Concurrent request simulation hammering the same time slot simultaneously to verify that exactly one reservation commits while all concurrent attempts fail cleanly with 409 Conflict.",
-      "Idempotency test cases verifying identical response payloads on re-sent requests without creating duplicate rows.",
+      "PostgreSQL 16 integration tests verifying transaction commits and rollback behavior.",
+      "Migration upgrade tests ensuring schema evolution does not break existing constraints.",
+      "TypeScript strict type checking across all models and route handlers.",
+      "Concurrency collision tests verifying exclusion constraint blocks conflicting two-hour bookings.",
     ],
     challengesAndMitigations: [
       {
@@ -151,7 +416,7 @@ export const PROJECTS: ProjectDetail[] = [
       },
     ],
     resultsAndMetrics:
-      "Measured production metrics not currently published. Architectural verification confirmed zero double-booking occurrences across automated concurrent collision tests.",
+      "Validated with PostgreSQL 16 integration tests and migration upgrade tests. Proved mathematical overlap prevention under concurrent request loads.",
     lessonsLearned: [
       "Database engines are significantly better at enforcing physical invariants than application-level locks.",
       "Treating availability as advisory decoupled heavy read traffic from the transactional booking bottleneck.",
@@ -161,244 +426,6 @@ export const PROJECTS: ProjectDetail[] = [
       "Implement a Redis-backed tiered caching layer for advisory restaurant search queries.",
       "Add WebSocket notifications for live table release alerts when a reservation cancels.",
       "Introduce OpenTelemetry instrumentation for distributed span tracing across booking stages.",
-    ],
-  },
-  {
-    slug: "devpartner-ai",
-    name: "DevPartner AI",
-    tagline: "AI-Assisted Verified Developer Workflow Pipeline",
-    oneLiner:
-      "A developer workflow system that subjects AI-generated code proposals to invariant extraction, impact analysis, mutation testing, and adversarial counterexamples before human approval.",
-    category: "AI & Developer Tools",
-    type: "AI Developer Tool / Verification Pipeline / Full-Stack",
-    role: "Team Lead & Core Engineer",
-    repoUrl: "https://github.com/anshver08-droid/DevPartnerAI_TeamRookies.git",
-    liveUrl: "https://dev-partner-ai-team-rookies.vercel.app",
-    statusBadge: "Live Production Prototype",
-    technologies: ["TypeScript", "React", "Next.js", "AI Verification Pipeline", "Mutation Testing", "Tailwind CSS"],
-    keyConcepts: [
-      "Human-in-the-Loop Gate",
-      "Invariant Extraction",
-      "Impact & Risk Assessment",
-      "Mutation Testing",
-      "Adversarial Counterexamples",
-      "Evidence Reporting",
-    ],
-    overview:
-      "DevPartner AI was developed by Team Rookies (Led by Ansh Verma, with Akash Singh, Astitva Mall, Aditya Soam; utilizing IBM Bob as an AI development assistant) to address the catastrophic risk of unverified AI code generation in engineering codebases. Rather than blindly applying LLM code suggestions, DevPartner AI orchestrates a multi-stage verification pipeline that forces AI changes to prove safety and correctness before being approved by human engineers.",
-    problem:
-      "Modern LLMs generate syntactically convincing code that frequently introduces subtle regressions, violates unspoken architectural invariants, degrades test suites, or introduces security vulnerabilities. Developers lack automated verification mechanisms to validate AI patches beyond trivial unit tests.",
-    whyHard:
-      "LLMs suffer from hallucinations and confirmation bias: asking an LLM 'is this code correct?' usually results in a reassuring hallucination. Verification requires independent analytical phases: extracting behavioral invariants, running mutation tests to check test strength, generating adversarial inputs, and summarizing evidence for human decision-making.",
-    solution:
-      "DevPartner AI introduces an isolated 12-stage pipeline. The developer's request is analyzed for intent, behavioral invariants, and blast radius. A formal implementation plan is generated and submitted to an explicit human approval gate. When cleared, the patch is applied in an isolated sandbox, evaluated against mutation tests and adversarial counterexamples, producing an audit-ready Evidence Report for final accept or rollback.",
-    architectureWorkflow: [
-      { step: "01", title: "Developer Request", detail: "Natural language feature request or bug report submitted by developer.", type: "client" },
-      { step: "02", title: "Intent Extraction", detail: "Formal semantic parsing of user goals and code boundaries.", type: "ai" },
-      { step: "03", title: "Invariant Analysis", detail: "Extraction of invariants that MUST NOT break during code transformation.", type: "logic" },
-      { step: "04", title: "Impact & Risk", detail: "Dependency graph blast radius analysis and vulnerability scoring.", type: "logic" },
-      { step: "05", title: "Implementation Plan", detail: "Structured, step-by-step diff plan generated with explicit constraints.", type: "ai" },
-      { step: "06", title: "Human Gate", detail: "CRITICAL: Developer reviews risk score and plan before code generation occurs.", type: "human" },
-      { step: "07", title: "Isolated Patch", detail: "Code modification generated and applied within an isolated virtual workspace.", type: "logic" },
-      { step: "08", title: "Verification", detail: "Type checking, static analysis, and test suite execution against the patch.", type: "verification" },
-      { step: "09", title: "Mutation Testing", detail: "Injects synthetic faults to ensure test suite detects behavioral regressions.", type: "verification" },
-      { step: "10", title: "Counterexamples", detail: "Adversarial test generation seeking edge cases that falsify the solution.", type: "verification" },
-      { step: "11", title: "Evidence Report", detail: "Aggregates test outcomes, mutation score, and residual risk into an audit card.", type: "ai" },
-      { step: "12", title: "Accept or Rollback", detail: "Human engineer commits verified patch or performs instant clean rollback.", type: "human" },
-    ],
-    engineeringDecisions: [
-      {
-        decision: "Mandatory Human Approval Gate Before Execution",
-        rationale: "Prevent autonomous AI agents from executing unreviewed file system mutations or deploying unchecked logic.",
-        tradeoff: "Adds a brief pause in execution, but eliminates rogue modifications and builds developer trust.",
-      },
-      {
-        decision: "Mutation Testing over Raw Test Coverage",
-        rationale: "High line coverage often tests nothing meaningful. Mutation testing verifies that existing tests actually fail when bugs are injected.",
-        tradeoff: "Higher computational time during the verification step.",
-      },
-      {
-        decision: "Adversarial Counterexample Generation",
-        rationale: "Specifically tasking a validation agent to break the generated code reveals subtle off-by-one errors and null pointer exceptions.",
-        tradeoff: "Requires structured prompts with clear evaluation boundaries.",
-      },
-      {
-        decision: "Team Structure & AI Assistant Clarification",
-        rationale: "Maintained transparent attribution: human team engineering with IBM Bob utilized as a development assistant, avoiding false claims of fully automated autonomy.",
-        tradeoff: "Reflects honest, defensible software engineering practices.",
-      },
-    ],
-    technicalImplementation: [
-      {
-        title: "Pipeline Orchestration Engine",
-        points: [
-          "Modular execution pipeline coordinating intent parsing, risk assessment, and sandbox patch evaluation.",
-          "Deterministic state machine transitioning patches through: Pending -> Planned -> Approved -> Sandboxed -> Verified -> Committed.",
-        ],
-      },
-      {
-        title: "Verification & Mutation Sandbox",
-        points: [
-          "Integration of AST analysis to extract structural invariants and detect side effects.",
-          "Synthetic mutant generator simulating boundary edge cases and missing null-checks.",
-          "Adversarial prompt harness designed to actively stress-test generated logic.",
-        ],
-      },
-      {
-        title: "Interactive Web Workspace",
-        points: [
-          "Built on Next.js, React, and Tailwind CSS offering real-time visualization of pipeline stages.",
-          "Color-coded risk indicators, diff viewers, and expandable evidence reports for developers.",
-        ],
-      },
-    ],
-    securityAndReliability: [
-      "Isolated sandboxing prevents untrusted AI code snippets from touching production file structures.",
-      "Strict human authorization gate ensures no code modification commits without manual developer sign-off.",
-      "Immutable evidence reports preserve audit trails of what checks passed and what counterexamples were evaluated.",
-    ],
-    testingStrategy: [
-      "Unit testing of the state machine transitions to guarantee atomic rollback upon verification failure.",
-      "Adversarial testing suites evaluating pipeline stability when fed malformed or hostile code inputs.",
-      "Evaluation against sample algorithmic and API tasks to measure regression detection rates.",
-    ],
-    challengesAndMitigations: [
-      {
-        challenge: "LLMs validating their own code often suffer from affirmative bias and declare flawed code safe.",
-        mitigation: "Decoupled generation from verification: the verification stage uses independent AST analysis, mutation testing, and adversarial testing roles.",
-      },
-      {
-        challenge: "Balancing verification depth against developer response latency.",
-        mitigation: "Structured the pipeline with clear progressive feedback, allowing the developer to review the high-level plan while background checks execute.",
-      },
-    ],
-    resultsAndMetrics:
-      "Measured quantitative metrics not currently published. Prototype successfully demonstrated automated invariant extraction and regression catch across benchmark testing scenarios.",
-    lessonsLearned: [
-      "AI in software engineering is most powerful when paired with rigorous, traditional computer science verification tools.",
-      "Developers do not want a black box that changes their code; they want an auditable partner that shows proof of safety.",
-    ],
-    futureImprovements: [
-      "Integration into GitHub Actions as an automated Pull Request review bot.",
-      "Support for Dockerized container sandboxes for language runtimes beyond JavaScript/TypeScript.",
-      "Formal specification generation using lightweight TLA+ or property-based test suites.",
-    ],
-  },
-  {
-    slug: "healthbuddy-ai",
-    name: "HealthBuddy AI",
-    tagline: "Responsible Clinical Pre-Consultation Intake Assistant",
-    oneLiner:
-      "An AI-powered pre-consultation intake assistant converting conversational symptom descriptions in English, Hindi, and Hinglish into structured clinical case sheets and doctor-ready summaries.",
-    category: "AI & Full-Stack",
-    type: "Generative AI / Full-Stack / Healthcare UX",
-    role: "Full-Stack & AI Integration Engineer",
-    repoUrl: "https://github.com/anshver08-droid/HealthBuddy-AI.git",
-    statusBadge: "Verified Responsible AI Prototype",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Google Gemini API", "Web Speech API"],
-    keyConcepts: [
-      "Non-Diagnostic Boundary",
-      "Multilingual Intake (English, Hindi, Hinglish)",
-      "Zero Fabrication Policy",
-      "Red-Flag Symptom Triage",
-      "Structured Case Sheet Generation",
-      "Human Doctor Review",
-    ],
-    overview:
-      "HealthBuddy AI is a patient-facing clinical pre-consultation intake system built with Next.js, TypeScript, and Google Gemini API. It is strictly designed NOT as an autonomous diagnostic system, but as an intelligent intake assistant that structures messy patient symptom narratives into clean, audit-ready clinical summaries for licensed doctors.",
-    problem:
-      "Clinical consultations are severely time-constrained. Patients often struggle to articulate their timeline of symptoms, omit critical context, or express symptoms in mixed colloquial vernacular (such as Hindi or Hinglish). Doctors spend excessive consultation time taking basic historical notes rather than evaluating and treating patients.",
-    whyHard:
-      "Healthcare requires absolute adherence to safety and non-maleficence. Medical hallucinations or unsupported diagnostic conclusions from an LLM can mislead patients and cause clinical harm. Furthermore, patients frequently use ambiguous vernacular that standard medical natural language models fail to parse accurately.",
-    solution:
-      "HealthBuddy AI adheres to a strict non-diagnostic boundary. It gathers patient symptom accounts via text or speech, utilizes adaptive follow-up questioning to establish symptom duration, severity, and triggers, and extracts structured entities (chief complaint, history of present illness, allergies, current medications). Missing data is explicitly flagged as 'Unknown/Pending', and red-flag emergency symptoms trigger immediate escalation notices while preparing a doctor-ready case sheet.",
-    architectureWorkflow: [
-      { step: "01", title: "Patient Interaction", detail: "Patient enters symptoms via voice (Web Speech API) or text in English, Hindi, or Hinglish.", type: "client" },
-      { step: "02", title: "Input Preprocessing", detail: "Sanitizes input, detects language, and checks for explicit emergency keywords.", type: "logic" },
-      { step: "03", title: "Adaptive Dialogue", detail: "Gemini API conducts guided, empathetic follow-up to clarify duration and severity.", type: "ai" },
-      { step: "04", title: "Red-Flag Filter", detail: "Evaluates symptoms against acute safety criteria (chest pain, shortness of breath, etc.).", type: "logic" },
-      { step: "05", title: "Structured Extraction", detail: "Converts conversational dialogue into strict JSON clinical entities.", type: "ai" },
-      { step: "06", title: "Zero-Fabrication Check", detail: "Enforces that unmentioned vitals or history are marked 'Not Disclosed' or 'Pending'.", type: "logic" },
-      { step: "07", title: "Case Sheet Generation", detail: "Renders standard clinical pre-consultation document with audit-ready transcript.", type: "logic" },
-      { step: "08", title: "Doctor Final Review", detail: "Licensed healthcare practitioner reviews structured intake before consultation.", type: "human" },
-    ],
-    engineeringDecisions: [
-      {
-        decision: "Strict Non-Diagnostic Boundary Enforced via System Prompts",
-        rationale: "The AI is explicitly forbidden from naming specific medical diagnoses or prescribing treatments, protecting patient safety.",
-        tradeoff: "Prevents conversational 'advice' that some users expect, but ensures defensible medical compliance.",
-      },
-      {
-        decision: "Zero Fabrication & Explicit Pending State",
-        rationale: "If a patient does not mention allergies or prior surgeries, the system must record 'Not Disclosed / Unknown' rather than inferring them.",
-        tradeoff: "Leaves empty fields that require doctor verification, which is the correct clinical protocol.",
-      },
-      {
-        decision: "Multilingual Voice & Text Support (Hinglish/Hindi)",
-        rationale: "Broadens accessibility for patients across India who describe physical sensations colloquially (e.g. 'sir dard do din se hai').",
-        tradeoff: "Requires robust entity extraction capable of handling mixed-script inputs.",
-      },
-      {
-        decision: "Client-Side Secure Session Handling",
-        rationale: "Avoids unauthenticated server persistence of sensitive health discussions during pre-consultation intake sessions.",
-        tradeoff: "Intake data is scoped to the current user session unless explicitly exported to the clinical provider.",
-      },
-    ],
-    technicalImplementation: [
-      {
-        title: "AI & Clinical Prompt Engineering",
-        points: [
-          "Engineered Google Gemini API system instructions with strict medical ethics guardrails and structured JSON schemas.",
-          "Adaptive questioning logic that limits interrogation loops to 3-4 targeted questions to avoid patient fatigue.",
-          "Emergency symptom classifier prompting immediate physical emergency care instructions.",
-        ],
-      },
-      {
-        title: "Speech & Frontend Accessibility",
-        points: [
-          "Integrated Web Speech API for real-time speech-to-text input, lowering barriers for non-tech-savvy users.",
-          "Built with Next.js and Tailwind CSS with high-contrast accessibility standards and responsive mobile layouts.",
-          "Audit-ready chronological transcript viewer allowing physicians to verify original patient phrasing.",
-        ],
-      },
-      {
-        title: "Clinical Document Formatting",
-        points: [
-          "Standardized clinical case sheet layout: Chief Complaint, History of Present Illness (HPI), Associated Symptoms, Medications, Disclaimers.",
-          "One-click print/export styling for seamless clinical handoff.",
-        ],
-      },
-    ],
-    securityAndReliability: [
-      "Zero medical accuracy claims made: prominent legal and clinical disclaimers across all screens.",
-      "Strict sanitization of user text before passing to the AI integration layer.",
-      "No permanent storage of patient identifiable health information on unsecured third-party servers.",
-    ],
-    testingStrategy: [
-      "Simulated patient dialogue testing with synthetic English, Hindi, and Hinglish transcripts to verify extraction precision.",
-      "Adversarial prompting to verify that the AI refuses to provide drug dosages, prescriptions, or definitive diagnoses.",
-      "Red-flag trigger testing to guarantee instant emergency banner presentation upon acute symptom detection.",
-    ],
-    challengesAndMitigations: [
-      {
-        challenge: "Handling colloquial Hindi/Hinglish phrasing that standard NLP classifiers misinterpret.",
-        mitigation: "Leveraged Gemini's multilingual semantic understanding with contextual few-shot guidance for Indian colloquial expressions.",
-      },
-      {
-        challenge: "Preventing patients from treating the AI intake as an authoritative doctor.",
-        mitigation: "Placed persistent, unavoidable UI banners stating 'Intake Assistant Only — Not a Medical Diagnosis' and requiring acknowledgement.",
-      },
-    ],
-    resultsAndMetrics:
-      "Measured clinical trial metrics not currently published. Demonstrates validated conversational-to-structured clinical pipeline without synthetic hallucinations.",
-    lessonsLearned: [
-      "In healthcare engineering, knowing what NOT to automate is more critical than what to automate.",
-      "Structured output constraints with zero-fabrication rules make LLMs viable for serious administrative support.",
-    ],
-    futureImprovements: [
-      "FHIR (Fast Healthcare Interoperability Resources) JSON export compliance for integration with hospital EHR systems.",
-      "Support for regional audio dialects via specialized fine-tuned Whisper models.",
-      "Doctor annotation mode allowing clinicians to stamp and sign off case sheets digitally.",
     ],
   },
 ];
