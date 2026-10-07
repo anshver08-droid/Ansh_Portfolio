@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  webpack: (config) => {
+    config.output.uniqueName = "ansh-portfolio";
+    return config;
+  },
 };
 
 export default nextConfig;

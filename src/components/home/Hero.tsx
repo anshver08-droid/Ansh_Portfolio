@@ -58,8 +58,18 @@ export function Hero() {
           </div>
 
           {/* 3. Neon Emerald Elegant Scribble / Vector Flow (Matches cursive green accent in reference) */}
-          <div className="absolute pointer-events-none z-10 w-[240px] sm:w-[380px] lg:w-[480px] h-[120px] sm:h-[180px] right-[10%] sm:right-[15%] top-[25%] sm:top-[28%] opacity-85">
-            <svg viewBox="0 0 400 160" fill="none" className="w-full h-full">
+          <div
+            style={{ maxWidth: "480px", maxHeight: "180px" }}
+            className="absolute pointer-events-none z-10 w-[240px] sm:w-[380px] lg:w-[480px] h-[120px] sm:h-[180px] right-[10%] sm:right-[15%] top-[25%] sm:top-[28%] opacity-85"
+          >
+            <svg
+              viewBox="0 0 400 160"
+              fill="none"
+              width="100%"
+              height="100%"
+              style={{ maxWidth: "100%", maxHeight: "100%", display: "block" }}
+              className="w-full h-full"
+            >
               <path
                 d="M 20 120 C 60 40, 120 20, 160 50 C 200 80, 140 140, 190 130 C 240 120, 270 30, 310 40 C 350 50, 360 110, 390 120"
                 stroke="#00e599"
