@@ -1,3 +1,4 @@
+<<<<<<< HEADg
 # Ansh Verma — Software Engineering Portfolio & ATS System
 
 A production-grade, ATS-aware personal software engineering portfolio and case study platform for **Ansh Verma** (B.Tech CSE-AIML at ABES Engineering College).
@@ -113,3 +114,6 @@ npm run start
 - **Phone**: +91 9555994648
 - **LinkedIn**: [linkedin.com/in/ansh-verma-380264398](https://www.linkedin.com/in/ansh-verma-380264398)
 - **GitHub**: [github.com/anshver08-droid](https://github.com/anshver08-droid)
+=======
+# Ansh_Portfolio
+>>>>>>> e37bc361a141a56d72cddea8003f25524abc002e
